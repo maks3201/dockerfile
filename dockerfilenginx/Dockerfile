@@ -13,6 +13,4 @@ COPY nginx.conf /etc/nginx/
 
 COPY index.html /opt/
 
-RUN echo "<p> hostname: `hostname`" >> /opt/index.html
-
 CMD ["nginx","-g","daemon off;"]
