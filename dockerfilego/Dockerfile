@@ -1,12 +1,12 @@
 FROM alpine AS build
-RUN apk update
 WORKDIR /go
-COPY ./main.go ./main.go
-RUN apk add --update go gcc g++ && go build main.go
+RUN apk update && apk add --update go gcc g++
+COPY ./main1.go ./main1.go
+RUN go build main1.go
 
 FROM alpine
 WORKDIR /go
-COPY --from=build /go/main /go
+COPY --from=build /go/main1 /go
 EXPOSE 80
-CMD ["./main"]
+CMD ["./main1"]
 
